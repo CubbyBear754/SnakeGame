@@ -1,13 +1,22 @@
 extends Node2D
 
 var spine : AIChain
-var deadzone = 15
-
+@export var deadzone = 15
+@export_range(500,3600,50) var speed :float = 800 
+@export var segments : int = 46
+@export var segmentsize : float = 25
+@export var startlocation : Node2D
+var tonguetarget : Vector2
+var elapsed_time: float = 0.0
+var max_tongue_length: float = 100.0 # Maximum extension in pixels
+var min_tongue_length: float = 60.0  # Minimum retraction in pixels
+var rotation_range: float = 30.0     # Total swing angle (e.g., -15 to +15 degrees)
+var rotation_speed: float = 2.0      # How many full swings per second
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	spine = AIChain.new()
 	#add_child(spine)
-	spine.populate(Vector2.ZERO,300,28,PI/4)
+	spine.populate(startlocation.position,segments,segmentsize,PI/4)
 
 func resolve(delta:float) -> void:
 	var headPos = spine.joints[0]
@@ -15,14 +24,15 @@ func resolve(delta:float) -> void:
 	var targetDir = headPos.direction_to(mousePos)
 	var absx = abs((mousePos-headPos).x)
 	var absy = abs((mousePos-headPos).y)
+	var dspeed = speed * delta
+	var targetPos = headPos + (targetDir * dspeed)	
+	tonguetarget = headPos + (targetDir * 100)
+	elapsed_time += delta
 	if absx < deadzone && absx > -deadzone && absy < deadzone && absy > -deadzone:
 		return
-	var speed = 1800 * delta
-	var targetPos = headPos + (targetDir * speed)
-	
 	%Label.text = "Mouse:" + str(mousePos) + "Head" + str(headPos) + "Target:" + str(targetPos)
-	spine.resolve(targetPos, speed)
-
+	spine.resolve(targetPos, dspeed)
+	%Camera2D.position = targetPos
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
@@ -38,7 +48,35 @@ func _draw() -> void:
 	var joint_count : int = spine.joints.size()
 	if joint_count < 2:
 		return
+	# Draw the main tongue line
+	# Calculate the direction of the target
+	var base_pos: Vector2 = spine.joints[0]
+	var target_dir: Vector2 = (tonguetarget - base_pos).normalized()
 
+	# Calculate oscillating length over a 3-second period
+	# (2 * PI / 3.0) ensures the full sine wave loop takes exactly 3 seconds
+	var wave: float = (sin(elapsed_time * (2.0 * PI / 3.0)) + 1.0) / 2.0
+	var current_length: float = lerp(min_tongue_length, max_tongue_length, wave)
+
+	# Calculate the new dynamic tongue tip position
+	var current_tip: Vector2 = base_pos + (target_dir * current_length)
+
+	# Draw the main tongue line
+	draw_line(base_pos, current_tip, Color.GREEN, stroke_width, true)
+
+	# Calculate vectors for the fork based on the current direction
+	var tongue_perp: Vector2 = Vector2(-target_dir.y, target_dir.x)
+	var fork_length: float = 15.0
+	var fork_spread: float = 8.0
+
+	# Calculate fork tip positions starting from the dynamic tip
+	var left_fork: Vector2 = current_tip + (target_dir * fork_length) + (tongue_perp * fork_spread)
+	var right_fork: Vector2 = current_tip + (target_dir * fork_length) - (tongue_perp * fork_spread)
+
+	# Draw the two fork lines
+	draw_line(current_tip, left_fork, Color.GREEN, stroke_width, true)
+	draw_line(current_tip, right_fork, Color.GREEN, stroke_width, true)
+	
 	# === 1. DRAW BODY SEGMENTS INDIVIDUALLY ===
 	# Loop backward (Tail to Head) so the head and neck render on top of the tail loops
 	for i in range(joint_count - 1, 0, -1):
@@ -90,6 +128,8 @@ func _draw() -> void:
 	# Right Eye
 	draw_circle(right_eye_center, eye_radius, eye_color)
 	draw_arc(right_eye_center, eye_radius, 0, TAU, 12, Color.WHITE, 4, true)
+	
+	
 
 
 func _physics_process(delta: float) -> void:
