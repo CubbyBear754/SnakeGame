@@ -8,8 +8,8 @@ var spine : AIChain
 @export var startlocation : Node2D
 var tonguetarget : Vector2
 var elapsed_time: float = 0.0
-var max_tongue_length: float = 100.0 # Maximum extension in pixels
-var min_tongue_length: float = 60.0  # Minimum retraction in pixels
+var max_tongue_length: float = 65.0 # Maximum extension in pixels
+var min_tongue_length: float = 55.0  # Minimum retraction in pixels
 var rotation_range: float = 30.0     # Total swing angle (e.g., -15 to +15 degrees)
 var rotation_speed: float = 2.0      # How many full swings per second
 # Called when the node enters the scene tree for the first time.
@@ -49,29 +49,39 @@ func _draw() -> void:
 	if joint_count < 2:
 		return
 	# Draw the main tongue line
-	# Calculate the direction of the target
+	# 1. Find the base angle facing the original target
 	var base_pos: Vector2 = spine.joints[0]
-	var target_dir: Vector2 = (tonguetarget - base_pos).normalized()
+	var base_angle: float = (tonguetarget - base_pos).angle()
 
-	# Calculate oscillating length over a 3-second period
-	# (2 * PI / 3.0) ensures the full sine wave loop takes exactly 3 seconds
-	var wave: float = (sin(elapsed_time * (2.0 * PI / 3.0)) + 1.0) / 2.0
-	var current_length: float = lerp(min_tongue_length, max_tongue_length, wave)
+	# 2. Calculate the swing offset using a sine wave
+	# Convert range to radians and swing between -half and +half of the range
+	var angle_offset: float = sin(elapsed_time * rotation_speed * 2.0 * PI) * deg_to_rad(rotation_range / 2.0)
+	var current_angle: float = base_angle + angle_offset
 
-	# Calculate the new dynamic tongue tip position
+	# 3. Create the final direction vector from the rotated angle
+	var target_dir: Vector2 = Vector2.from_angle(current_angle)
+
+	# 4. Calculate oscillating length (3-second period)
+	var length_wave: float = (sin(elapsed_time * (2.0 * PI / 3.0)) + 1.0) / 2.0
+	var current_length: float = lerp(min_tongue_length, max_tongue_length, length_wave)
+
+	# 5. Calculate the dynamic tongue tip position
 	var current_tip: Vector2 = base_pos + (target_dir * current_length)
 
 	# Draw the main tongue line
 	draw_line(base_pos, current_tip, Color.GREEN, stroke_width, true)
 
-	# Calculate vectors for the fork based on the current direction
+	# 6. Calculate vectors for the fork based on the new rotated direction
 	var tongue_perp: Vector2 = Vector2(-target_dir.y, target_dir.x)
 	var fork_length: float = 15.0
 	var fork_spread: float = 8.0
 
-	# Calculate fork tip positions starting from the dynamic tip
 	var left_fork: Vector2 = current_tip + (target_dir * fork_length) + (tongue_perp * fork_spread)
 	var right_fork: Vector2 = current_tip + (target_dir * fork_length) - (tongue_perp * fork_spread)
+
+	# Draw the two fork lines
+	draw_line(current_tip, left_fork, Color.GREEN, stroke_width, true)
+	draw_line(current_tip, right_fork, Color.GREEN, stroke_width, true)
 
 	# Draw the two fork lines
 	draw_line(current_tip, left_fork, Color.GREEN, stroke_width, true)
