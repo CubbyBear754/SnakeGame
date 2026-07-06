@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cfkbo5a8ejgq5"]
+
+[ext_resource type="Script" uid="uid://c5h2c0k7hvur6" path="res://Scripts/snake.gd" id="1_iukft"]
+
+[node name="Game" type="Node2D" unique_id=966153715]
+
+[node name="Snake" type="Node2D" parent="." unique_id=1940097039]
+script = ExtResource("1_iukft")
+
+[node name="Label" type="Label" parent="." unique_id=257510210]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -0.5
+offset_right = 1147.0
+offset_bottom = 23.0
+grow_horizontal = 2
+size_flags_vertical = 0
+text = "test"
+horizontal_alignment = 1
