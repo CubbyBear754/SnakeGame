@@ -1,44 +1,110 @@
 [gd_scene format=3 uid="uid://cfkbo5a8ejgq5"]
 
+[ext_resource type="Script" uid="uid://bnbrks8k7jxb1" path="res://Scenes/game.gd" id="1_gl6un"]
 [ext_resource type="Script" uid="uid://c5h2c0k7hvur6" path="res://Scripts/snake.gd" id="1_iukft"]
 
-[node name="Game" type="Node2D" unique_id=966153715]
+[node name="Game" type="Node" unique_id=17946430]
+script = ExtResource("1_gl6un")
 
-[node name="Snake" type="Node2D" parent="." unique_id=1940097039 node_paths=PackedStringArray("startlocation")]
-script = ExtResource("1_iukft")
-startlocation = NodePath("StartAt")
+[node name="VSplitContainer" type="VSplitContainer" parent="." unique_id=984641085]
+offset_left = 4.0
+offset_right = 1924.0
+offset_bottom = 1080.0
 
-[node name="Camera2D" type="Camera2D" parent="Snake" unique_id=518974208]
+[node name="SplitContainer" type="HSplitContainer" parent="VSplitContainer" unique_id=943995587]
+layout_mode = 2
+split_offsets = PackedInt32Array(512)
+split_offset = 512
+
+[node name="SVPC1" type="SubViewportContainer" parent="VSplitContainer/SplitContainer" unique_id=1053111755]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VSplitContainer/SplitContainer/SVPC1" unique_id=257510210]
 unique_name_in_owner = true
-
-[node name="Container" type="Control" parent="Snake/Camera2D" unique_id=1638481607]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -960.0
-offset_top = -540.0
-offset_right = 960.0
-offset_bottom = 540.0
-
-[node name="Label" type="Label" parent="Snake/Camera2D/Container" unique_id=257510210]
-unique_name_in_owner = true
-layout_mode = 0
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -593.75
-offset_right = 553.75
-offset_bottom = 23.0
-grow_horizontal = 2
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
 text = "test"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="StartAt" type="Node2D" parent="Snake" unique_id=331396731]
-position = Vector2(1513, 810)
+[node name="SVP" type="SubViewport" parent="VSplitContainer/SplitContainer/SVPC1" unique_id=1600607278]
+handle_input_locally = false
+size = Vector2i(960, 540)
+render_target_update_mode = 4
 
-[node name="Polygon2D" type="Polygon2D" parent="." unique_id=47758546]
+[node name="Polygon2D" type="Polygon2D" parent="VSplitContainer/SplitContainer/SVPC1/SVP" unique_id=47758546]
 z_index = -100
-position = Vector2(796, 588)
+position = Vector2(164, 115)
 color = Color(0.23303752, 0.03137255, 0, 1)
 polygon = PackedVector2Array(6, -6, 1573, 56, 1462, 527, 1245, 91, 1102, 807, 694, 362, 437, 853, 240, 265, 1, 122, 1, 122)
+
+[node name="Camera2D" type="Camera2D" parent="VSplitContainer/SplitContainer/SVPC1/SVP" unique_id=518974208]
+unique_name_in_owner = true
+
+[node name="Snake" type="Node2D" parent="VSplitContainer/SplitContainer/SVPC1/SVP" unique_id=1940097039 node_paths=PackedStringArray("startlocation")]
+script = ExtResource("1_iukft")
+startlocation = NodePath("StartAt")
+
+[node name="StartAt" type="Node2D" parent="VSplitContainer/SplitContainer/SVPC1/SVP/Snake" unique_id=331396731]
+position = Vector2(1513, 810)
+
+[node name="SVPC2" type="SubViewportContainer" parent="VSplitContainer/SplitContainer" unique_id=2025526465]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VSplitContainer/SplitContainer/SVPC2" unique_id=1648018947]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+text = "test"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="SVP" type="SubViewport" parent="VSplitContainer/SplitContainer/SVPC2" unique_id=1521602650]
+handle_input_locally = false
+size = Vector2i(960, 540)
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera2D" parent="VSplitContainer/SplitContainer/SVPC2/SVP" unique_id=643614053]
+
+[node name="SplitContainer2" type="HSplitContainer" parent="VSplitContainer" unique_id=966780880]
+layout_direction = 2
+layout_mode = 2
+split_offsets = PackedInt32Array(960)
+split_offset = 960
+
+[node name="SVPC3" type="SubViewportContainer" parent="VSplitContainer/SplitContainer2" unique_id=1004294267]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VSplitContainer/SplitContainer2/SVPC3" unique_id=1430719951]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+text = "test"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="SVP" type="SubViewport" parent="VSplitContainer/SplitContainer2/SVPC3" unique_id=725958916]
+handle_input_locally = false
+size = Vector2i(960, 540)
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera2D" parent="VSplitContainer/SplitContainer2/SVPC3/SVP" unique_id=206704468]
+
+[node name="SVPC4" type="SubViewportContainer" parent="VSplitContainer/SplitContainer2" unique_id=1786034607]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VSplitContainer/SplitContainer2/SVPC4" unique_id=2052245613]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+text = "test"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="SVP" type="SubViewport" parent="VSplitContainer/SplitContainer2/SVPC4" unique_id=991660920]
+handle_input_locally = false
+size = Vector2i(960, 540)
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera2D" parent="VSplitContainer/SplitContainer2/SVPC4/SVP" unique_id=1477347502]
