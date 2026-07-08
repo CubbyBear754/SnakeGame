@@ -6,10 +6,14 @@
 [node name="Game" type="Node" unique_id=17946430]
 script = ExtResource("1_gl6un")
 
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1088740728]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(0, 4320, 7680, 4320, 7680, 0, 0, 0)
+
 [node name="VSplitContainer" type="VSplitContainer" parent="." unique_id=984641085]
 offset_left = 4.0
-offset_right = 1924.0
-offset_bottom = 1080.0
+offset_right = 7696.0
+offset_bottom = 4320.0
 
 [node name="SplitContainer" type="HSplitContainer" parent="VSplitContainer" unique_id=943995587]
 layout_mode = 2
@@ -19,19 +23,26 @@ split_offset = 512
 [node name="SVPC1" type="SubViewportContainer" parent="VSplitContainer/SplitContainer" unique_id=1053111755]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VSplitContainer/SplitContainer/SVPC1" unique_id=257510210]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 2
-text = "test"
-horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
-
 [node name="SVP" type="SubViewport" parent="VSplitContainer/SplitContainer/SVPC1" unique_id=1600607278]
 handle_input_locally = false
-size = Vector2i(960, 540)
+size = Vector2i(3840, 2160)
 render_target_update_mode = 4
+
+[node name="CanvasLayer" type="CanvasLayer" parent="VSplitContainer/SplitContainer/SVPC1/SVP" unique_id=1349159754]
+
+[node name="Label" type="Label" parent="VSplitContainer/SplitContainer/SVPC1/SVP/CanvasLayer" unique_id=257510210]
+unique_name_in_owner = true
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 4.0
+offset_right = 4.0
+offset_bottom = 23.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 86
+text = "test"
+horizontal_alignment = 1
 
 [node name="Polygon2D" type="Polygon2D" parent="VSplitContainer/SplitContainer/SVPC1/SVP" unique_id=47758546]
 z_index = -100
@@ -52,18 +63,25 @@ position = Vector2(1513, 810)
 [node name="SVPC2" type="SubViewportContainer" parent="VSplitContainer/SplitContainer" unique_id=2025526465]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VSplitContainer/SplitContainer/SVPC2" unique_id=1648018947]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 2
-text = "test"
-horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
-
 [node name="SVP" type="SubViewport" parent="VSplitContainer/SplitContainer/SVPC2" unique_id=1521602650]
 handle_input_locally = false
-size = Vector2i(960, 540)
+size = Vector2i(3840, 2160)
 render_target_update_mode = 4
+
+[node name="CanvasLayer" type="CanvasLayer" parent="VSplitContainer/SplitContainer/SVPC2/SVP" unique_id=659867680]
+
+[node name="Label" type="Label" parent="VSplitContainer/SplitContainer/SVPC2/SVP/CanvasLayer" unique_id=1184409813]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 4.0
+offset_right = 4.0
+offset_bottom = 23.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 86
+text = "test"
+horizontal_alignment = 1
 
 [node name="Camera2D" type="Camera2D" parent="VSplitContainer/SplitContainer/SVPC2/SVP" unique_id=643614053]
 
@@ -76,35 +94,49 @@ split_offset = 960
 [node name="SVPC3" type="SubViewportContainer" parent="VSplitContainer/SplitContainer2" unique_id=1004294267]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VSplitContainer/SplitContainer2/SVPC3" unique_id=1430719951]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 2
-text = "test"
-horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
-
 [node name="SVP" type="SubViewport" parent="VSplitContainer/SplitContainer2/SVPC3" unique_id=725958916]
 handle_input_locally = false
-size = Vector2i(960, 540)
+size = Vector2i(3840, 2160)
 render_target_update_mode = 4
+
+[node name="CanvasLayer" type="CanvasLayer" parent="VSplitContainer/SplitContainer2/SVPC3/SVP" unique_id=2114667430]
+
+[node name="Label" type="Label" parent="VSplitContainer/SplitContainer2/SVPC3/SVP/CanvasLayer" unique_id=704865043]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 4.0
+offset_right = 4.0
+offset_bottom = 23.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 86
+text = "test"
+horizontal_alignment = 1
 
 [node name="Camera2D" type="Camera2D" parent="VSplitContainer/SplitContainer2/SVPC3/SVP" unique_id=206704468]
 
 [node name="SVPC4" type="SubViewportContainer" parent="VSplitContainer/SplitContainer2" unique_id=1786034607]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VSplitContainer/SplitContainer2/SVPC4" unique_id=2052245613]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 2
-text = "test"
-horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
-
 [node name="SVP" type="SubViewport" parent="VSplitContainer/SplitContainer2/SVPC4" unique_id=991660920]
 handle_input_locally = false
-size = Vector2i(960, 540)
+size = Vector2i(3840, 2160)
 render_target_update_mode = 4
+
+[node name="CanvasLayer" type="CanvasLayer" parent="VSplitContainer/SplitContainer2/SVPC4/SVP" unique_id=39206806]
+
+[node name="Label" type="Label" parent="VSplitContainer/SplitContainer2/SVPC4/SVP/CanvasLayer" unique_id=942849460]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 4.0
+offset_right = 4.0
+offset_bottom = 23.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 86
+text = "test"
+horizontal_alignment = 1
 
 [node name="Camera2D" type="Camera2D" parent="VSplitContainer/SplitContainer2/SVPC4/SVP" unique_id=1477347502]
