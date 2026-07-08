@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://bdjtx57de5ha5"]
+
+[ext_resource type="Script" uid="uid://bhlw7rjguqwvv" path="res://Scenes/level_1.gd" id="1_i63mn"]
+[ext_resource type="Script" uid="uid://c5h2c0k7hvur6" path="res://Scripts/snake.gd" id="1_n0r7v"]
+[ext_resource type="Script" uid="uid://c7t6c5i1cwh3i" path="res://Resources/player_control_res.gd" id="3_vnunq"]
+
+[sub_resource type="Resource" id="Resource_nw7js"]
+script = ExtResource("3_vnunq")
+metadata/_custom_type_script = "uid://c7t6c5i1cwh3i"
+
+[sub_resource type="Resource" id="Resource_vnunq"]
+script = ExtResource("3_vnunq")
+player_index = 1
+move_left = "p2_move_left"
+move_right = "p2_move_right"
+move_up = "p2_move_up"
+move_down = "p2_move_down"
+metadata/_custom_type_script = "uid://c7t6c5i1cwh3i"
+
+[node name="Level_One" type="Node2D" unique_id=2004211938]
+script = ExtResource("1_i63mn")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1348290085]
+z_index = -100
+position = Vector2(164, 115)
+color = Color(0.23303752, 0.03137255, 0, 1)
+polygon = PackedVector2Array(6, -6, 1573, 56, 1462, 527, 1245, 91, 1102, 807, 694, 362, 437, 853, 240, 265, 1, 122, 1, 122)
+
+[node name="Snake4" type="Node2D" parent="." unique_id=1807910320 node_paths=PackedStringArray("startlocation")]
+script = ExtResource("1_n0r7v")
+startlocation = NodePath("StartAt")
+
+[node name="StartAt" type="Node2D" parent="Snake4" unique_id=1321473728]
+position = Vector2(1628, 824)
+
+[node name="Snake3" type="Node2D" parent="." unique_id=1460746291 node_paths=PackedStringArray("startlocation")]
+script = ExtResource("1_n0r7v")
+startlocation = NodePath("StartAt")
+stroke_color = Color(0.1801756, 0.31667697, 0.22109208, 1)
+fill_color = Color(0.17710873, 0.46414882, 0.30965778, 1)
+
+[node name="StartAt" type="Node2D" parent="Snake3" unique_id=1979037213]
+position = Vector2(241, 893)
+
+[node name="Snake" type="Node2D" parent="." unique_id=386330645 node_paths=PackedStringArray("startlocation")]
+script = ExtResource("1_n0r7v")
+startlocation = NodePath("StartAt")
+stroke_color = Color(0.10191787, 0.26442495, 0.54890835, 1)
+fill_color = Color(0.36135557, 0.29088837, 0.82354563, 1)
+controls = SubResource("Resource_nw7js")
+
+[node name="StartAt" type="Node2D" parent="Snake" unique_id=181844969]
+position = Vector2(1639, 135)
+
+[node name="Snake2" type="Node2D" parent="." unique_id=1817365021 node_paths=PackedStringArray("startlocation")]
+script = ExtResource("1_n0r7v")
+startlocation = NodePath("StartAt")
+stroke_color = Color(0.35665387, 0.26448107, 0.047020428, 1)
+fill_color = Color(0.6939768, 0.08448913, 0.47273642, 1)
+controls = SubResource("Resource_vnunq")
+
+[node name="StartAt" type="Node2D" parent="Snake2" unique_id=881828886]
+position = Vector2(191, 89)

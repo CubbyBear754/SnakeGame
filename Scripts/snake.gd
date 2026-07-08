@@ -1,11 +1,17 @@
 extends Node2D
-
 var spine : AIChain
 @export var deadzone = 15
 @export_range(500,3600,50) var speed :float = 800 
 @export var segments : int = 46
 @export var segmentsize : float = 25
 @export var startlocation : Node2D
+@export var stroke_color := Color.DARK_RED
+@export	var stroke_width := 4.0
+@export	var fill_color := Color8(172, 57, 49) # #AC3931
+@export	var eye_color := Color.BLACK
+@export var controls : PlayerControls = null
+var label : Label
+var camera : Camera2D
 var tonguetarget : Vector2
 var elapsed_time: float = 0.0
 var max_tongue_length: float = 65.0 # Maximum extension in pixels
@@ -18,31 +24,31 @@ func _ready() -> void:
 	#add_child(spine)
 	spine.populate(startlocation.position,segments,segmentsize,PI/4)
 
-func resolve(delta:float) -> void:
+var last : Vector2 = Vector2.ZERO
+func resolve(direction: Vector2, delta:float) -> void:
+	if direction != Vector2.ZERO:
+		last = direction
+	else:
+		direction = last
 	var headPos = spine.joints[0]
-	var mousePos = get_global_mouse_position()
-	var targetDir = headPos.direction_to(mousePos)
-	var absx = abs((mousePos-headPos).x)
-	var absy = abs((mousePos-headPos).y)
+	#var mousePos = get_global_mouse_position()
+	var targetDir = direction #headPos.direction_to(mousePos)
+	#var absx = abs((mousePos-headPos).x)
+	#var absy = abs((mousePos-headPos).y)
 	var dspeed = speed * delta
 	var targetPos = headPos + (targetDir * dspeed)	
 	tonguetarget = headPos + (targetDir * 100)
 	elapsed_time += delta
-	if absx < deadzone && absx > -deadzone && absy < deadzone && absy > -deadzone:
-		return
-	%Label.text = "Mouse:" + str(mousePos) + "Head" + str(headPos) + "Target:" + str(targetPos)
+	#if absx < deadzone && absx > -deadzone && absy < deadzone && absy > -deadzone:
+	#	return
+	label.text = "Mouse:" + str(direction) + "Head" + str(headPos) + "Target:" + str(targetPos)
 	spine.resolve(targetPos, dspeed)
-	%Camera2D.position = targetPos
+	camera.position = targetPos
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 	
 func _draw() -> void:
-	# Styling setup
-	var stroke_color := Color.DARK_RED
-	var stroke_width := 4.0
-	var fill_color := Color8(172, 57, 49) # #AC3931
-	var eye_color := Color.BLACK
 	
 	var points := PackedVector2Array()
 	var joint_count : int = spine.joints.size()
@@ -143,7 +149,14 @@ func _draw() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	resolve(delta)
+	if controls == null:
+		var random_direction = Vector2.RIGHT.rotated(randf_range(0, TAU))
+		resolve(random_direction, delta)
+	else :
+		var h_axis = Input.get_axis(controls.move_left,controls.move_right)
+		var v_axis = Input.get_axis(controls.move_up,controls.move_down)
+		var direction = Vector2(h_axis,v_axis).normalized()
+		resolve(direction, delta)
 	queue_redraw()
 	#debugDisplay()
 	
