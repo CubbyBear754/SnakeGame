@@ -3,6 +3,9 @@ extends Node2D
 
 class_name AIChain
 
+var my_thread: Thread
+
+
 var joints: Array[Vector2] = []
 var angles: Array[float] = []
 var link_size: int
@@ -16,11 +19,17 @@ func populate(origin: Vector2, joint_count: int, p_link_size: int, p_angle_const
 	joints.append(origin)
 	angles.append(0.0)
 	
+	
 	for i in range(1, joint_count):
 		# Generates next joint relative to previous joint position
 		joints.append(joints[i - 1] - Vector2(0, link_size))
 		angles.append(0.0)
+	
+	my_thread = Thread.new() # Initialize the thread object
 
+func resolve_async(pos: Vector2, speed: float) -> void:
+	my_thread.start(resolve.bind(pos,speed))
+	my_thread.wait_to_finish()
 # Forward kinematics solver with angle constraints
 func resolve(pos: Vector2, speed: float) -> void:
 	
@@ -73,8 +82,7 @@ func _draw() -> void:
 		draw_line(start_joint, end_joint, Color.BLACK, 4.0)
 		
 		# Draw joint visual indicators
-		draw_circle(joints[i], 12.0, Color.BLACK)
-		draw_circle(joints[i], 8.0, Color.BLACK)
+		draw_circle(joints[i], 30, Color.BLACK)
 
 # Helper placeholder logic for distance locking
 func constrain_distance(point: Vector2, target: Vector2, distance: float) -> Vector2:

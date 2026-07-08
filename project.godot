@@ -92,3 +92,4 @@ common/max_physics_steps_per_frame=1
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+driver/threads/thread_model=2

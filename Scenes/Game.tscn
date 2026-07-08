@@ -40,7 +40,6 @@ grow_horizontal = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
 theme_override_font_sizes/font_size = 86
-text = "test"
 horizontal_alignment = 1
 
 [node name="Camera2D" type="Camera2D" parent="VSplitContainer/SplitContainer/SVPC1/SVP" unique_id=518974208]
@@ -75,7 +74,6 @@ grow_horizontal = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
 theme_override_font_sizes/font_size = 86
-text = "test"
 horizontal_alignment = 1
 
 [node name="Camera2D" type="Camera2D" parent="VSplitContainer/SplitContainer/SVPC2/SVP" unique_id=643614053]
@@ -106,7 +104,6 @@ grow_horizontal = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
 theme_override_font_sizes/font_size = 86
-text = "test"
 horizontal_alignment = 1
 
 [node name="Camera2D" type="Camera2D" parent="VSplitContainer/SplitContainer2/SVPC3/SVP" unique_id=206704468]
@@ -131,7 +128,6 @@ grow_horizontal = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
 theme_override_font_sizes/font_size = 86
-text = "test"
 horizontal_alignment = 1
 
 [node name="Camera2D" type="Camera2D" parent="VSplitContainer/SplitContainer2/SVPC4/SVP" unique_id=1477347502]
