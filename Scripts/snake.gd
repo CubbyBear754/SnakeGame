@@ -52,7 +52,8 @@ func resolve(direction: Vector2, delta:float) -> void:
 	#	return
 	#label.text = "Mouse:" + str(direction) + "Head" + str(headPos) + "Target:" + str(targetPos)
 	spine.resolve_async(targetPos, dspeed)
-	camera.position = targetPos
+	if is_instance_valid(camera):
+		camera.position = targetPos
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

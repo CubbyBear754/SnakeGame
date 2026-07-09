@@ -10,14 +10,8 @@ extends Node2D
 @export var p4_camera : Camera2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Snake.label = p1_label
-	$Snake.camera = p1_camera
-	$Snake2.label = p2_label
-	$Snake2.camera = p2_camera
-	$Snake3.label = p3_label
-	$Snake3.camera = p3_camera
-	$Snake4.label = p4_label
-	$Snake4.camera = p4_camera
+	$QuadMeshSnake.label = p1_label
+	$QuadMeshSnake.setcamera(p1_camera)
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
