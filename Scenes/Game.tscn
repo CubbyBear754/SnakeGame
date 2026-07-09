@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://bnbrks8k7jxb1" path="res://Scenes/game.gd" id="1_gl6un"]
 [ext_resource type="PackedScene" uid="uid://772nak4d1qpk" path="res://Scenes/Level_2.tscn" id="2_gl6un"]
-[ext_resource type="PackedScene" uid="uid://bdjtx57de5ha5" path="res://Scenes/Level_1.tscn" id="3_j5yw3"]
 
 [node name="Game" type="Node" unique_id=17946430]
 script = ExtResource("1_gl6un")
@@ -54,15 +53,6 @@ p1_camera = NodePath("../Camera2D")
 p2_camera = NodePath("../../../SVPC2/SVP/Camera2D")
 p3_camera = NodePath("../../../../SplitContainer2/SVPC3/SVP/Camera2D")
 p4_camera = NodePath("../../../../SplitContainer2/SVPC4/SVP/Camera2D")
-
-[node name="Level_One" parent="VSplitContainer/SplitContainer/SVPC1/SVP" unique_id=24343244 node_paths=PackedStringArray("p1_label", "p2_label", "p3_label", "p1_camera", "p2_camera", "p3_camera") instance=ExtResource("3_j5yw3")]
-visible = false
-p1_label = NodePath("../../../SVPC2/SVP/CanvasLayer/Label")
-p2_label = NodePath("../../../../SplitContainer2/SVPC3/SVP/CanvasLayer/Label")
-p3_label = NodePath("../../../../SplitContainer2/SVPC4/SVP/CanvasLayer/Label")
-p1_camera = NodePath("../../../SVPC2/SVP/Camera2D")
-p2_camera = NodePath("../../../../SplitContainer2/SVPC3/SVP/Camera2D")
-p3_camera = NodePath("../../../../SplitContainer2/SVPC4/SVP/Camera2D")
 
 [node name="SVPC2" type="SubViewportContainer" parent="VSplitContainer/SplitContainer" unique_id=2025526465]
 layout_mode = 2

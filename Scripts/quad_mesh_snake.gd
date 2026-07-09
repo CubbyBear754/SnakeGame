@@ -10,6 +10,7 @@ extends Node2D
 @export var segments : int = 46
 @export var segmentsize : float = 25
 @export var controls : PlayerControls = null
+@export var instance : int = 0
 var label : Label
 var camera : Camera2D
 var last_random : float = .0
@@ -21,6 +22,7 @@ func setcamera(cam : Camera2D) -> void:
 	$MultiMeshInstance2D.camera = cam
 	
 func _ready() -> void:
+	$MultiMeshInstance2D.instance = instance
 	$MultiMeshInstance2D.deadzone = deadzone
 	$MultiMeshInstance2D.speed = speed
 	$MultiMeshInstance2D.stroke_width = stroke_width

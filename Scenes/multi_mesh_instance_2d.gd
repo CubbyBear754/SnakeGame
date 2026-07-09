@@ -23,11 +23,12 @@ var rotation_range: float = 30.0     # Total swing angle (e.g., -15 to +15 degre
 var rotation_speed: float = 2.0      # How many full swings per second
 var min_limit = Vector2(0, 0)
 var max_limit = Vector2(7000, 4000)
+var instance = 0
 
 var last : Vector2 = Vector2.ZERO
 
 func _ready() -> void:
-	multimesh.instance_count = 4003
+	multimesh.instance_count = 4000
 	z_index = -10
 	rstwicebypi = rotation_speed * 2.0 * PI
 	
@@ -55,7 +56,7 @@ func resolve(direction: Vector2, delta:float) -> void:
 func update_snake_mesh() -> void:
 	var positions: Array[Vector2] = spine.joints
 	var color_to_assign: Color = fill_color
-	var current_instance_index: int = 0
+	var current_instance_index: int = instance * 1000
 	
 	var outline_thickness: float = 0.2 # Percentage of radius (0.0 to 1.0)
 
