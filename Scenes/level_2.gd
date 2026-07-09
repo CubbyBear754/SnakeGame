@@ -21,3 +21,26 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+var safe_vector = Vector2(-10000,-10000)
+func _physics_process(delta: float) -> void:
+	var head1 = $QuadMeshSnake.Head() if is_instance_valid($QuadMeshSnake) else safe_vector
+	var head2 = $QuadMeshSnake2.Head() if is_instance_valid($QuadMeshSnake2) else safe_vector
+	var head3 = $QuadMeshSnake3.Head() if is_instance_valid($QuadMeshSnake3) else safe_vector
+	var head4 = $QuadMeshSnake4.Head() if is_instance_valid($QuadMeshSnake4) else safe_vector
+	if is_instance_valid($QuadMeshSnake):
+		$QuadMeshSnake.check_for_hits(head2)
+		$QuadMeshSnake.check_for_hits(head3)
+		$QuadMeshSnake.check_for_hits(head4)
+	if is_instance_valid($QuadMeshSnake2):
+		$QuadMeshSnake2.check_for_hits(head1)
+		$QuadMeshSnake2.check_for_hits(head3)
+		$QuadMeshSnake2.check_for_hits(head4)
+	if is_instance_valid($QuadMeshSnake3):
+		$QuadMeshSnake3.check_for_hits(head2)
+		$QuadMeshSnake3.check_for_hits(head1)
+		$QuadMeshSnake3.check_for_hits(head4)
+	if is_instance_valid($QuadMeshSnake4):
+		$QuadMeshSnake4.check_for_hits(head2)
+		$QuadMeshSnake4.check_for_hits(head3)
+		$QuadMeshSnake4.check_for_hits(head1)

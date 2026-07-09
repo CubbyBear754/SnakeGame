@@ -40,6 +40,8 @@ func _ready() -> void:
 	$MultiMeshInstance2D.spineless = $MultiMeshInstance2D.spine.joints.size() - 15
 
 func _physics_process(delta: float) -> void:
+	if $MultiMeshInstance2D.spine.joints.size() < 2:
+		queue_free()
 	if controls == null || controls.player_index != 0:
 		var random_angle = last_random + randf_range(-angles, angles)
 		last_random = random_angle
@@ -126,3 +128,24 @@ func get_pos_x(i : int, angleOffset: float, lengthOffset: float) -> float:
 	
 func get_pos_y(i : int, angleOffset: float, lengthOffset: float) -> float:
 	return $MultiMeshInstance2D.spine.joints[i].y + sin($MultiMeshInstance2D.spine.angles[i] + angleOffset) * (30 + lengthOffset)
+
+func Head() -> Vector2:
+	return $MultiMeshInstance2D.spine.joints[0]
+
+func check_for_hits(incoming_global_position: Vector2) -> void:
+	var points = $MultiMeshInstance2D.spine.joints
+	# Iterate through the points of your line representing the snake body
+	for i in range(points.size()):
+		var global_point_pos = global_position + points[i]
+		
+		# Check if an incoming projectile or damage point hits a specific circle
+		if Geometry2D.is_point_in_circle(incoming_global_position, global_point_pos, segmentsize):
+			# Cut the snake at point 'i'
+			truncate_snake(i)
+			break
+
+func truncate_snake(cut_index: int) -> void:
+	# Shrink the Line2D array to only include points from the head to the cut_index	
+	if cut_index == 0:
+		return 
+	$MultiMeshInstance2D.spine.joints = $MultiMeshInstance2D.spine.joints.slice(0, cut_index)
