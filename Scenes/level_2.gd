@@ -12,8 +12,12 @@ extends Node2D
 func _ready() -> void:
 	$QuadMeshSnake.label = p1_label
 	$QuadMeshSnake.setcamera(p1_camera)
-	
-
+	$QuadMeshSnake2.label = p2_label
+	$QuadMeshSnake2.setcamera(p2_camera)
+	$QuadMeshSnake3.label = p3_label
+	$QuadMeshSnake3.setcamera(p3_camera)
+	$QuadMeshSnake4.label = p4_label
+	$QuadMeshSnake4.setcamera(p4_camera)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

@@ -27,7 +27,7 @@ end_cap_mode = 2
 round_precision = 10
 
 [node name="QuadMeshSnake" parent="." unique_id=500431083 node_paths=PackedStringArray("startlocation") instance=ExtResource("4_cleky")]
-speed = 500.0
+speed = 3600.0
 fill_color = Color(0.81066316, 0.19580168, 0.4327199, 1)
 startlocation = NodePath("StartAt")
 segments = 4000
@@ -35,4 +35,35 @@ segmentsize = 75.0
 controls = SubResource("Resource_nh7xm")
 
 [node name="StartAt" type="Node2D" parent="QuadMeshSnake" unique_id=1517697045]
-position = Vector2(900, 384)
+position = Vector2(2397, 2009)
+
+[node name="QuadMeshSnake2" parent="." unique_id=415593519 node_paths=PackedStringArray("startlocation") instance=ExtResource("4_cleky")]
+speed = 3600.0
+fill_color = Color(0.81066316, 0.19580168, 0.4327199, 1)
+startlocation = NodePath("StartAt")
+segments = 4000
+segmentsize = 75.0
+
+[node name="StartAt" type="Node2D" parent="QuadMeshSnake2" unique_id=1663156744]
+position = Vector2(3106, 1822)
+
+[node name="QuadMeshSnake3" parent="." unique_id=120237202 node_paths=PackedStringArray("startlocation") instance=ExtResource("4_cleky")]
+speed = 3600.0
+fill_color = Color(0.81066316, 0.19580168, 0.4327199, 1)
+startlocation = NodePath("StartAt")
+segments = 4000
+segmentsize = 75.0
+
+[node name="StartAt" type="Node2D" parent="QuadMeshSnake3" unique_id=1963223160]
+position = Vector2(4456, 1517)
+
+[node name="QuadMeshSnake4" parent="." unique_id=112158977 node_paths=PackedStringArray("startlocation") instance=ExtResource("4_cleky")]
+speed = 3600.0
+stroke_color = Color(0.3769444, 0.2519892, 0.068729, 1)
+fill_color = Color(0.14584967, 0.5536559, 0.4062225, 1)
+startlocation = NodePath("StartAt")
+segments = 4000
+segmentsize = 75.0
+
+[node name="StartAt" type="Node2D" parent="QuadMeshSnake4" unique_id=14485761]
+position = Vector2(1392, 2462)

@@ -45,11 +45,18 @@ horizontal_alignment = 1
 
 [node name="Camera2D" type="Camera2D" parent="VSplitContainer/SplitContainer/SVPC1/SVP" unique_id=518974208]
 
-[node name="Level_Two" parent="VSplitContainer/SplitContainer/SVPC1/SVP" unique_id=2004211938 node_paths=PackedStringArray("p1_label", "p1_camera") instance=ExtResource("2_gl6un")]
+[node name="Level_Two" parent="VSplitContainer/SplitContainer/SVPC1/SVP" unique_id=2004211938 node_paths=PackedStringArray("p1_label", "p2_label", "p3_label", "p4_label", "p1_camera", "p2_camera", "p3_camera", "p4_camera") instance=ExtResource("2_gl6un")]
 p1_label = NodePath("../CanvasLayer/Label")
+p2_label = NodePath("../../../SVPC2/SVP/CanvasLayer/Label")
+p3_label = NodePath("../../../../SplitContainer2/SVPC3/SVP/CanvasLayer/Label")
+p4_label = NodePath("../../../../SplitContainer2/SVPC4/SVP/CanvasLayer/Label")
 p1_camera = NodePath("../Camera2D")
+p2_camera = NodePath("../../../SVPC2/SVP/Camera2D")
+p3_camera = NodePath("../../../../SplitContainer2/SVPC3/SVP/Camera2D")
+p4_camera = NodePath("../../../../SplitContainer2/SVPC4/SVP/Camera2D")
 
 [node name="Level_One" parent="VSplitContainer/SplitContainer/SVPC1/SVP" unique_id=24343244 node_paths=PackedStringArray("p1_label", "p2_label", "p3_label", "p1_camera", "p2_camera", "p3_camera") instance=ExtResource("3_j5yw3")]
+visible = false
 p1_label = NodePath("../../../SVPC2/SVP/CanvasLayer/Label")
 p2_label = NodePath("../../../../SplitContainer2/SVPC3/SVP/CanvasLayer/Label")
 p3_label = NodePath("../../../../SplitContainer2/SVPC4/SVP/CanvasLayer/Label")

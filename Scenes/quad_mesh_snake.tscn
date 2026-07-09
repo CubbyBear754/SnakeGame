@@ -12,6 +12,7 @@ center_offset = Vector3(0.5, 0.5, 0.5)
 
 [sub_resource type="MultiMesh" id="MultiMesh_m4pld"]
 use_colors = true
+use_custom_data = true
 mesh = SubResource("QuadMesh_a3x2j")
 
 [node name="QuadMeshSnake" type="Node2D" unique_id=415593519]
