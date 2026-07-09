@@ -53,7 +53,7 @@ func _physics_process(delta: float) -> void:
 		var direction = Vector2(h_axis,v_axis).normalized()
 		$MultiMeshInstance2D.resolve(direction, delta)
 	#debugDisplay()
-	$MultiMeshInstance2D.update_snake_mesh()
+	#$MultiMeshInstance2D.update_snake_mesh()
 	elapsed_time += delta
 	queue_redraw()
 
@@ -131,6 +131,9 @@ func get_pos_y(i : int, angleOffset: float, lengthOffset: float) -> float:
 
 func Head() -> Vector2:
 	return $MultiMeshInstance2D.spine.joints[0]
+	
+func dataset() -> SnakeMesh:
+	return $MultiMeshInstance2D
 
 func check_for_hits(incoming_global_position: Vector2) -> void:
 	var points = $MultiMeshInstance2D.spine.joints
@@ -148,4 +151,6 @@ func truncate_snake(cut_index: int) -> void:
 	# Shrink the Line2D array to only include points from the head to the cut_index	
 	if cut_index == 0:
 		return 
+	var was = $MultiMeshInstance2D.spine.joints.size()
 	$MultiMeshInstance2D.spine.joints = $MultiMeshInstance2D.spine.joints.slice(0, cut_index)
+	#$MultiMeshInstance2D.eattail(cut_index,was)

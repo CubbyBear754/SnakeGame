@@ -1,5 +1,5 @@
 extends MultiMeshInstance2D
-
+class_name SnakeMesh
 var deadzone = 15
 var speed :float = 800 
 var stroke_width: float = 4.0
@@ -52,35 +52,42 @@ func resolve(direction: Vector2, delta:float) -> void:
 	#label.text = "Mouse:" + str(direction) + "Head" + str(headPos) + "Target:" + str(targetPos)
 	spine.resolve_async(targetPos, dspeed)
 	camera.position = targetPos
-
-func update_snake_mesh() -> void:
-	var positions: Array[Vector2] = spine.joints
-	var color_to_assign: Color = fill_color
-	var current_instance_index: int = instance * 1000
+#todo rework everything back into the quad mesh snake and add the multimesh to the level
+func update_snake_mesh(datasets : Array[SnakeMesh]) -> void:
+	var current_instance_index: int = 0
+	var outline_thickness: float = 0.2
+	for dataset in datasets:
 	
-	var outline_thickness: float = 0.2 # Percentage of radius (0.0 to 1.0)
-
-	# Pack thickness into the Alpha channel of a vector, or pass as custom data
-	# Custom data is a Color (4 floats), perfect for storing (R, G, B, Thickness)
-	var custom_data = Color(stroke_color.r, stroke_color.g, stroke_color.b, outline_thickness)
+		var positions: Array[Vector2] = dataset.spine.joints
+		var color_to_assign: Color = dataset.fill_color
+		var custom_data = Color(stroke_color.r, stroke_color.g, stroke_color.b, outline_thickness)
+		
+		# Batch update this specific player's 1,000 circles
+		for i in range(positions.size()-1, -1, -1):
+			var pos = positions[i]
+			# Create a hardware transform matrix for the position
+			# 1. Start with an empty transform (identity)
+			var diameter = segmentsize * 1.5		
+			if i == 0:
+				diameter = 75
+			var offset = diameter/2
+			var xform: Transform2D = Transform2D.IDENTITY
+			xform = xform.scaled(Vector2(diameter, diameter))
+			xform.origin = pos - Vector2(offset,offset)
+			multimesh.set_instance_transform_2d(current_instance_index, xform) 
+			multimesh.set_instance_color(current_instance_index, color_to_assign)		
+			# Pass the outline data to the shader
+			multimesh.set_instance_custom_data(current_instance_index, custom_data)
+			current_instance_index += 1
 	
-	# Batch update this specific player's 1,000 circles
-	for i in range(positions.size()-1, -1, -1):
-		var pos = positions[i]
-		# Create a hardware transform matrix for the position
-		# 1. Start with an empty transform (identity)
-		var diameter = segmentsize * 1.5		
-		if i == 0:
-			diameter = 75
-		var offset = diameter/2
-		var xform: Transform2D = Transform2D.IDENTITY
-		xform = xform.scaled(Vector2(diameter, diameter))
-		xform.origin = pos - Vector2(offset,offset)
-		multimesh.set_instance_transform_2d(current_instance_index, xform) 
-		multimesh.set_instance_color(current_instance_index, color_to_assign)		
-		# Pass the outline data to the shader
-		multimesh.set_instance_custom_data(current_instance_index, custom_data)
-		current_instance_index += 1
+	if current_instance_index + 1 < multimesh.instance_count:
+		multimesh.instance_count = current_instance_index + 1
+
+#func eattail(i : int, was : int) -> void:
+	#var eatfrom = (1000 * instance) + i	
+	#while eatfrom < was:
+		#multimesh.set_instance_transform(eatfrom, Transform2D.IDENTITY)
+		#eatfrom += 1
 
 #func update_snake_mesh() -> void:
 	#var joint_count: int = spine.joints.size()
