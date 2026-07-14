@@ -11,8 +11,14 @@ var angles: Array[float] = []
 var link_size: int
 var angle_constraint: float
 
+func clear_joints() -> void:
+	joints = []
+
 # Constructor / Initialiser
 func populate(origin: Vector2, joint_count: int, p_link_size: int, p_angle_constraint: float) -> void:
+	var target_location = Vector2(3500, 2000)
+	var direction = origin.direction_to(target_location) * link_size
+	
 	self.link_size = p_link_size
 	self.angle_constraint = p_angle_constraint
 	
@@ -22,7 +28,7 @@ func populate(origin: Vector2, joint_count: int, p_link_size: int, p_angle_const
 	
 	for i in range(1, joint_count):
 		# Generates next joint relative to previous joint position
-		joints.append(joints[i - 1] - Vector2(0, link_size))
+		joints.append(joints[i - 1] - direction)
 		angles.append(0.0)
 	
 	my_thread = Thread.new() # Initialize the thread object

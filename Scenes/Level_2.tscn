@@ -8,6 +8,15 @@
 script = ExtResource("3_2g134")
 metadata/_custom_type_script = "uid://c7t6c5i1cwh3i"
 
+[sub_resource type="Resource" id="Resource_apq5t"]
+script = ExtResource("3_2g134")
+player_index = 1
+move_left = "p2_move_left"
+move_right = "p2_move_right"
+move_up = "p2_move_up"
+move_down = "p2_move_down"
+metadata/_custom_type_script = "uid://c7t6c5i1cwh3i"
+
 [node name="Level_Two" type="Node2D" unique_id=2004211938]
 script = ExtResource("1_ostk4")
 
@@ -31,44 +40,44 @@ speed = 3600.0
 stroke_color = Color(0.36078432, 0.7176471, 0.09411765, 1)
 fill_color = Color(0.11764706, 0.1882353, 0.79607844, 1)
 startlocation = NodePath("StartAt")
-segments = 200
+segments = 100
 segmentsize = 75.0
 controls = SubResource("Resource_ostk4")
 
 [node name="StartAt" type="Node2D" parent="QuadMeshSnake" unique_id=1517697045]
-position = Vector2(2397, 2009)
 
 [node name="QuadMeshSnake2" parent="." unique_id=415593519 node_paths=PackedStringArray("startlocation") instance=ExtResource("4_cleky")]
 speed = 3600.0
 stroke_color = Color(0.586936, 0.55131525, 0.004995587, 1)
 fill_color = Color(0.18039216, 0.94509804, 0.81960785, 1)
 startlocation = NodePath("StartAt")
-segments = 200
+segments = 100
 segmentsize = 75.0
+controls = SubResource("Resource_apq5t")
 instance = 1
 
 [node name="StartAt" type="Node2D" parent="QuadMeshSnake2" unique_id=1663156744]
-position = Vector2(3106, 1822)
+position = Vector2(7000, 0)
 
 [node name="QuadMeshSnake3" parent="." unique_id=120237202 node_paths=PackedStringArray("startlocation") instance=ExtResource("4_cleky")]
 speed = 3600.0
 fill_color = Color(0.81066316, 0.19580168, 0.4327199, 1)
 startlocation = NodePath("StartAt")
-segments = 200
+segments = 100
 segmentsize = 75.0
 instance = 2
 
 [node name="StartAt" type="Node2D" parent="QuadMeshSnake3" unique_id=1963223160]
-position = Vector2(4456, 1517)
+position = Vector2(0, 4000)
 
 [node name="QuadMeshSnake4" parent="." unique_id=112158977 node_paths=PackedStringArray("startlocation") instance=ExtResource("4_cleky")]
 speed = 3600.0
 stroke_color = Color(0.3769444, 0.2519892, 0.068729, 1)
 fill_color = Color(0.14584967, 0.5536559, 0.4062225, 1)
 startlocation = NodePath("StartAt")
-segments = 1000
+segments = 100
 segmentsize = 75.0
 instance = 3
 
 [node name="StartAt" type="Node2D" parent="QuadMeshSnake4" unique_id=14485761]
-position = Vector2(1392, 2462)
+position = Vector2(7000, 4000)

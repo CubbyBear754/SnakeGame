@@ -28,27 +28,35 @@ func _physics_process(delta: float) -> void:
 	var head2 = $QuadMeshSnake2.Head() if is_instance_valid($QuadMeshSnake2) else safe_vector
 	var head3 = $QuadMeshSnake3.Head() if is_instance_valid($QuadMeshSnake3) else safe_vector
 	var head4 = $QuadMeshSnake4.Head() if is_instance_valid($QuadMeshSnake4) else safe_vector
+	var oneshits : Array[int] = []
+	var twoshits : Array[int] = []
+	var threeshits : Array[int] = []
+	var fourshits : Array[int] = []
 	var datasets : Array[SnakeMesh]
 	
 	if is_instance_valid($QuadMeshSnake):
-		$QuadMeshSnake.check_for_hits(head2)
-		$QuadMeshSnake.check_for_hits(head3)
-		$QuadMeshSnake.check_for_hits(head4)
+		oneshits.append($QuadMeshSnake.check_for_hits_on_lost(head1))
+		twoshits.append($QuadMeshSnake.check_for_hits(head2))
+		threeshits.append($QuadMeshSnake.check_for_hits(head3))
+		fourshits.append($QuadMeshSnake.check_for_hits(head4))
 		datasets.append($QuadMeshSnake.dataset())
 	if is_instance_valid($QuadMeshSnake2):
-		$QuadMeshSnake2.check_for_hits(head1)
-		$QuadMeshSnake2.check_for_hits(head3)
-		$QuadMeshSnake2.check_for_hits(head4)
+		twoshits.append($QuadMeshSnake2.check_for_hits_on_lost(head2))
+		oneshits.append($QuadMeshSnake2.check_for_hits(head1))
+		threeshits.append($QuadMeshSnake2.check_for_hits(head3))
+		fourshits.append($QuadMeshSnake2.check_for_hits(head4))
 		datasets.append($QuadMeshSnake2.dataset())
 	if is_instance_valid($QuadMeshSnake3):
-		$QuadMeshSnake3.check_for_hits(head2)
-		$QuadMeshSnake3.check_for_hits(head1)
-		$QuadMeshSnake3.check_for_hits(head4)
+		threeshits.append($QuadMeshSnake3.check_for_hits_on_lost(head3))
+		twoshits.append($QuadMeshSnake3.check_for_hits(head2))
+		oneshits.append($QuadMeshSnake3.check_for_hits(head1))
+		fourshits.append($QuadMeshSnake3.check_for_hits(head4))
 		datasets.append($QuadMeshSnake3.dataset())
 	if is_instance_valid($QuadMeshSnake4):
-		$QuadMeshSnake4.check_for_hits(head2)
-		$QuadMeshSnake4.check_for_hits(head3)
-		$QuadMeshSnake4.check_for_hits(head1)
+		fourshits.append($QuadMeshSnake4.check_for_hits_on_lost(head4))
+		twoshits.append($QuadMeshSnake4.check_for_hits(head2))
+		threeshits.append($QuadMeshSnake4.check_for_hits(head3))
+		oneshits.append($QuadMeshSnake4.check_for_hits(head1))
 		datasets.append($QuadMeshSnake4.dataset())
 	
 	if is_instance_valid($QuadMeshSnake):
@@ -59,5 +67,14 @@ func _physics_process(delta: float) -> void:
 		$QuadMeshSnake3.dataset().update_snake_mesh(datasets)
 	elif is_instance_valid($QuadMeshSnake4):
 		$QuadMeshSnake4.dataset().update_snake_mesh(datasets)
+	
+	if is_instance_valid($QuadMeshSnake):
+		$QuadMeshSnake.addhits(oneshits)
+	if is_instance_valid($QuadMeshSnake2):
+		$QuadMeshSnake2.addhits(twoshits)
+	if is_instance_valid($QuadMeshSnake3):
+		$QuadMeshSnake3.addhits(threeshits)
+	if is_instance_valid($QuadMeshSnake4):
+		$QuadMeshSnake4.addhits(fourshits)
 	
 	

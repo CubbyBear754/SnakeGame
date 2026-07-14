@@ -38,7 +38,7 @@ round_precision = 10
 [node name="Snake4" type="Node2D" parent="." unique_id=1807910320 node_paths=PackedStringArray("startlocation")]
 script = ExtResource("1_n0r7v")
 speed = 3600.0
-segments = 100
+segments = 50
 segmentsize = 75.0
 startlocation = NodePath("StartAt")
 
@@ -48,7 +48,7 @@ position = Vector2(1628, 824)
 [node name="Snake3" type="Node2D" parent="." unique_id=1460746291 node_paths=PackedStringArray("startlocation")]
 script = ExtResource("1_n0r7v")
 speed = 3600.0
-segments = 100
+segments = 50
 segmentsize = 75.0
 startlocation = NodePath("StartAt")
 stroke_color = Color(0.1801756, 0.31667697, 0.22109208, 1)
@@ -60,7 +60,7 @@ position = Vector2(241, 893)
 [node name="Snake" type="Node2D" parent="." unique_id=386330645 node_paths=PackedStringArray("startlocation")]
 script = ExtResource("1_n0r7v")
 speed = 3600.0
-segments = 300
+segments = 50
 segmentsize = 75.0
 startlocation = NodePath("StartAt")
 stroke_color = Color(0.10191787, 0.26442495, 0.54890835, 1)
@@ -72,8 +72,9 @@ position = Vector2(1639, 135)
 
 [node name="Snake2" type="Node2D" parent="." unique_id=1817365021 node_paths=PackedStringArray("startlocation")]
 script = ExtResource("1_n0r7v")
-segments = 100
-segmentsize = 75.0
+speed = 3600.0
+segments = 200
+segmentsize = 150.0
 startlocation = NodePath("StartAt")
 stroke_color = Color(0.35665387, 0.26448107, 0.047020428, 1)
 fill_color = Color(0.6939768, 0.08448913, 0.47273642, 1)

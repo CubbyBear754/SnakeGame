@@ -23,7 +23,7 @@ var max_limit = Vector2(7000, 4000)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	spine = AIChain.new()
-	add_child(spine)
+	#add_child(spine)
 	spine.z_index = -1
 	spine.populate(startlocation.position,segments,segmentsize,PI/4)
 	tauthird = (2.0 * PI / 3.0)
@@ -117,15 +117,15 @@ func _draw() -> void:
 		var right_next = Vector2(get_pos_x(next_idx, halfpi, 0.0), get_pos_y(next_idx, halfpi, 0.0))
 		# Cap the very end tip of the tail
 		if i == joint_count - 1:
-			#var segment_points := PackedVector2Array([spine.joints[i], left_next, right_next])		
+			var segment_points := PackedVector2Array([spine.joints[i], left_next, right_next])		
 			#Fill the individual segment box safely
-			#draw_polygon(segment_points, PackedColorArray([fill_color]))
+			draw_polygon(segment_points, PackedColorArray([fill_color]))
 			draw_line(spine.joints[i], right_next, stroke_color, stroke_width, true)
 			draw_line(spine.joints[i], left_next, stroke_color, stroke_width, true)
 		else:
-			#var segment_points := PackedVector2Array([right_curr, left_curr, left_next, right_next])		
+			var segment_points := PackedVector2Array([right_curr, left_curr, left_next, right_next])		
 			#Fill the individual segment box safely
-			#draw_polygon(segment_points, PackedColorArray([fill_color]))
+			draw_polygon(segment_points, PackedColorArray([fill_color]))
 			# Draw the left and right outer skins
 			draw_line(right_curr, right_next, stroke_color, stroke_width, true)
 			draw_line(left_curr, left_next, stroke_color, stroke_width, true)
@@ -162,7 +162,7 @@ var angles : float = .0
 var halfpi :float = .0
 
 func _physics_process(delta: float) -> void:
-	if controls == null || controls.player_index != 0:
+	if controls == null:
 		var random_angle = last_random + randf_range(-angles, angles)
 		last_random = random_angle
 		var random_direction = Vector2.RIGHT.rotated(random_angle)
@@ -172,7 +172,7 @@ func _physics_process(delta: float) -> void:
 		var v_axis = Input.get_axis(controls.move_up,controls.move_down)
 		var direction = Vector2(h_axis,v_axis).normalized()
 		resolve(direction, delta)
-	debugDisplay()
+	#debugDisplay()
 	queue_redraw()
 	
 	
@@ -187,16 +187,16 @@ func body_width(i: int) -> float:
 		0:
 			return 30.0
 		1:
-			return 30.0		
+			return segmentsize/1.5		
 		#var v when v > 144:
 			#return minsize
 		var v when v > (spineless):
-			var reduction = 30-float(i-spineless)
+			var reduction = (segmentsize/1.5)-float(i-spineless)
 			#var size: float = remap(i, spineless, spine.joints.size(), reduction, minsize)
 			#size = clamp(size, minsize, reduction)
 			return max(minsize, reduction)
 		_:
-			return 30
+			return segmentsize/1.5
 			#reduction = 30.0 - (float(i)*0.183)
 			#return max(minsize, reduction)
 			
