@@ -11,17 +11,22 @@ var spine : AIChain
 @export	var eye_color := Color.BLACK
 @export var controls : PlayerControls = null
 var label : Label
-var camera : Camera2D
 var tonguetarget : Vector2
 var elapsed_time: float = 0.0
 var max_tongue_length: float = 65.0 # Maximum extension in pixels
 var min_tongue_length: float = 55.0  # Minimum retraction in pixels
 var rotation_range: float = 30.0     # Total swing angle (e.g., -15 to +15 degrees)
 var rotation_speed: float = 2.0      # How many full swings per second
-var min_limit = Vector2(0, 0)
-var max_limit = Vector2(7000, 4000)
+var min_limit = Vector2(250, 250)
+var max_limit = Vector2(7430, 4070)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	var viewport_size: Vector2 = get_viewport_rect().size
+	var minx = 250-((viewport_size.x - 7680) / 2)
+	var maxx = 7430+((viewport_size.x - 7680) / 2)
+	min_limit = Vector2(minx,0)
+	max_limit = Vector2(maxx,4070)
+	
 	spine = AIChain.new()
 	#add_child(spine)
 	spine.z_index = -1
@@ -52,8 +57,6 @@ func resolve(direction: Vector2, delta:float) -> void:
 	#	return
 	#label.text = "Mouse:" + str(direction) + "Head" + str(headPos) + "Target:" + str(targetPos)
 	spine.resolve_async(targetPos, dspeed)
-	if is_instance_valid(camera):
-		camera.position = targetPos
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
@@ -61,6 +64,8 @@ func _process(delta: float) -> void:
 var tauthird :float = .0
 var rstwicebypi : float = .0
 func _draw() -> void:
+	if is_instance_valid(label):
+		label.text = str(min_limit) + " " + str(max_limit) + " " + str(get_viewport_rect().size )
 	var points := PackedVector2Array()
 	var joint_count : int = spine.joints.size()
 	if joint_count < 2:

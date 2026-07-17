@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://b5xw6t1yf3b6j"]
+
+[ext_resource type="Script" uid="uid://csdq66v47keq8" path="res://EatEmUp/Scenes/menu.gd" id="1_s2l3g"]
+[ext_resource type="StyleBox" uid="uid://dom32yk0tlhdq" path="res://Resources/btn.tres" id="2_b6rpx"]
+
+[node name="Menu" type="Control" unique_id=299913752]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s2l3g")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=175568035]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1800.5
+offset_top = -432.0
+offset_right = 1800.5
+offset_bottom = 432.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1543935470]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Play2" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1398667330]
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+theme_override_styles/normal = ExtResource("2_b6rpx")
+text = "Level 1"
+
+[node name="Play" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1694889914]
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+theme_override_styles/normal = ExtResource("2_b6rpx")
+text = "Level 2"
+
+[node name="Options" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1071324549]
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+theme_override_styles/normal = ExtResource("2_b6rpx")
+text = "Options"
+
+[node name="Unplay" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1092918977]
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+theme_override_styles/normal = ExtResource("2_b6rpx")
+text = "Quit To Desktop"
+
+[node name="Unplay2" type="Button" parent="MarginContainer/VBoxContainer" unique_id=2132561729]
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+theme_override_styles/normal = ExtResource("2_b6rpx")
+text = "Start Needlessly Complcated Closure of the Game"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Play2" to="." method="_on_play_2_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Unplay" to="." method="_on_unplay_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Unplay2" to="." method="_on_unplay_2_pressed"]

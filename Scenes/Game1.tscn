@@ -1,0 +1,107 @@
+[gd_scene format=3 uid="uid://dpbnwl60g1xbn"]
+
+[ext_resource type="Script" uid="uid://bcpja68he6unc" path="res://Scenes/game1.gd" id="1_rfy83"]
+[ext_resource type="PackedScene" uid="uid://bdjtx57de5ha5" path="res://Scenes/Level_1.tscn" id="2_rfy83"]
+[ext_resource type="Script" uid="uid://bj5rv5aa817sc" path="res://Scenes/pause_menu.gd" id="3_af1v6"]
+[ext_resource type="Script" uid="uid://bhlw7rjguqwvv" path="res://Scenes/level_1.gd" id="3_bnh5u"]
+[ext_resource type="StyleBox" uid="uid://dom32yk0tlhdq" path="res://Resources/btn.tres" id="4_61keh"]
+
+[node name="Game" type="Node" unique_id=17946430]
+script = ExtResource("1_rfy83")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1088740728]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-5000, 9320, 12680, 9320, 12680, -5000, -5000, -5000)
+
+[node name="Level_One" parent="." unique_id=2004211938 node_paths=PackedStringArray("p1_label") instance=ExtResource("2_rfy83")]
+position = Vector2(4, 0)
+script = ExtResource("3_bnh5u")
+p1_label = NodePath("../Camera2D/TimerCanvas/Label")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=253859344]
+offset = Vector2(3840, 2160)
+
+[node name="Pause_Menu" type="Control" parent="Camera2D" unique_id=1114293624]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 2880.0
+offset_top = 1620.0
+offset_right = 4800.0
+offset_bottom = 2700.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_af1v6")
+
+[node name="MarginContainer" type="MarginContainer" parent="Camera2D/Pause_Menu" unique_id=927160034]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.5
+offset_top = -15.5
+offset_right = 22.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera2D/Pause_Menu/MarginContainer" unique_id=255726723]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 75
+
+[node name="Restart" type="Button" parent="Camera2D/Pause_Menu/MarginContainer/VBoxContainer" unique_id=1702566521]
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+theme_override_styles/normal = ExtResource("4_61keh")
+text = "Restart"
+
+[node name="Resume" type="Button" parent="Camera2D/Pause_Menu/MarginContainer/VBoxContainer" unique_id=331958651]
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+theme_override_styles/normal = ExtResource("4_61keh")
+text = "Resume"
+
+[node name="Back" type="Button" parent="Camera2D/Pause_Menu/MarginContainer/VBoxContainer" unique_id=1498913797]
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+theme_override_styles/normal = ExtResource("4_61keh")
+text = "Back"
+
+[node name="TimerCanvas" type="CanvasLayer" parent="Camera2D" unique_id=1045468978]
+process_mode = 3
+
+[node name="CountDownLabel" type="Label" parent="Camera2D/TimerCanvas" unique_id=2058978534]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -11.5
+offset_right = 48.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 500
+text = "Get Ready ..."
+
+[node name="Label" type="Label" parent="Camera2D/TimerCanvas" unique_id=2016012168]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 98.0
+offset_bottom = 272.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 90
+text = "..."
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Camera2D/Pause_Menu/MarginContainer/VBoxContainer/Restart" to="Camera2D/Pause_Menu" method="_on_restart_pressed"]
+[connection signal="pressed" from="Camera2D/Pause_Menu/MarginContainer/VBoxContainer/Resume" to="Camera2D/Pause_Menu" method="_on_resume_pressed"]
+[connection signal="pressed" from="Camera2D/Pause_Menu/MarginContainer/VBoxContainer/Back" to="Camera2D/Pause_Menu" method="_on_back_pressed"]
