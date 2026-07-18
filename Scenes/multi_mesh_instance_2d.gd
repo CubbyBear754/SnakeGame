@@ -23,6 +23,8 @@ var rotation_range: float = 30.0     # Total swing angle (e.g., -15 to +15 degre
 var rotation_speed: float = 2.0      # How many full swings per second
 var min_limit = Vector2(0, 0)
 var max_limit = Vector2(7000, 4000)
+var centerofmap = Vector2(3500,2000)
+var borderrect : Rect2
 var instance = 0
 
 var lost : Array[Vector2] = []
@@ -32,6 +34,7 @@ func _ready() -> void:
 	multimesh.instance_count = 8000
 	z_index = -10
 	rstwicebypi = rotation_speed * 2.0 * PI
+	borderrect = Rect2(min_limit,max_limit)
 	
 func resolve(direction: Vector2, delta:float) -> void:
 	if direction != Vector2.ZERO:
@@ -54,7 +57,7 @@ func resolve(direction: Vector2, delta:float) -> void:
 	spine.resolve_async(targetPos, dspeed)
 	camera.position = targetPos
 #todo rework everything back into the quad mesh snake and add the multimesh to the level
-func update_snake_mesh(datasets : Array[SnakeMesh]) -> void:
+func update_snake_mesh(datasets : Array[SnakeMesh], delta : float) -> void:
 	var current_instance_index: int = 0
 	var outline_thickness: float = 0.2
 	for dataset in datasets:
@@ -66,6 +69,9 @@ func update_snake_mesh(datasets : Array[SnakeMesh]) -> void:
 		var offset = Vector2(diameter/2,diameter/2)
 		for i in range(dataset.lost.size()-1, -1, -1):
 			var pos = dataset.lost[i]
+			if not borderrect.has_point(pos):
+				pos = pos.lerp(centerofmap, delta/8)
+				dataset.lost[i] = pos
 			var xform: Transform2D = Transform2D.IDENTITY
 			xform = xform.scaled(Vector2(diameter, diameter))
 			xform.origin = pos - offset

@@ -18,6 +18,12 @@ func _ready() -> void:
 	$QuadMeshSnake3.setcamera(p3_camera)
 	$QuadMeshSnake4.label = p4_label
 	$QuadMeshSnake4.setcamera(p4_camera)
+	var snakes = [$QuadMeshSnake, $QuadMeshSnake2, $QuadMeshSnake3, $QuadMeshSnake4]
+	for i in range(PlayersData.players.size()):
+		var controls = PlayersData.players[i]
+		var snake = snakes[i]
+		snake.controls = controls
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
@@ -60,13 +66,13 @@ func _physics_process(delta: float) -> void:
 		datasets.append($QuadMeshSnake4.dataset())
 	
 	if is_instance_valid($QuadMeshSnake):
-		$QuadMeshSnake.dataset().update_snake_mesh(datasets)
+		$QuadMeshSnake.dataset().update_snake_mesh(datasets,delta)
 	elif is_instance_valid($QuadMeshSnake2):
-		$QuadMeshSnake2.dataset().update_snake_mesh(datasets)
+		$QuadMeshSnake2.dataset().update_snake_mesh(datasets,delta)
 	elif is_instance_valid($QuadMeshSnake3):
-		$QuadMeshSnake3.dataset().update_snake_mesh(datasets)
+		$QuadMeshSnake3.dataset().update_snake_mesh(datasets,delta)
 	elif is_instance_valid($QuadMeshSnake4):
-		$QuadMeshSnake4.dataset().update_snake_mesh(datasets)
+		$QuadMeshSnake4.dataset().update_snake_mesh(datasets,delta)
 	
 	if is_instance_valid($QuadMeshSnake):
 		$QuadMeshSnake.addhits(oneshits)

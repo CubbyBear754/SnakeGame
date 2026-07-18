@@ -15,3 +15,6 @@ func _on_unplay_pressed() -> void:
 
 func _on_unplay_2_pressed() -> void:
 	get_tree().quit()
+
+func _on_player_selection_pressed() -> void:
+	get_tree().change_scene_to_file("res://EatEmUp/Scenes/Menus/PlayerSetup.tscn")

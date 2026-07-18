@@ -12,6 +12,7 @@ func _input(event: InputEvent) -> void:
 			if selectedcontrols.size() > 0:
 				for x in range(selectedcontrols.size()):
 					if selectedcontrols[x].action == playeroptions[i].action:
+						#could mark players ready here
 						return;
 			selectedcontrols.append(playeroptions[i])
 			addplayerlabels(selectedcontrols.size()-1)
@@ -31,6 +32,10 @@ func _input(event: InputEvent) -> void:
 				for child in playercontainer.get_children():
 					child.setplayerid(newindex)
 					newindex += 1
+	if Input.is_action_just_pressed("global_action"):
+		PlayersData.players = selectedcontrols
+		get_tree().change_scene_to_file("res://Scenes/Game1.tscn")
+		
 
 func addplayerlabels(index : int) -> void:
 	var selected = selectedcontrols[index]

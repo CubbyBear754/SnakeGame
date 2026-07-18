@@ -33,11 +33,17 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="Play" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1694889914]
+[node name="PlayerSelection" type="Button" parent="MarginContainer/VBoxContainer" unique_id=830108740]
 layout_mode = 2
 theme_override_font_sizes/font_size = 150
 theme_override_styles/normal = ExtResource("2_b6rpx")
 text = "Play"
+
+[node name="Level2" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1694889914]
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+theme_override_styles/normal = ExtResource("2_b6rpx")
+text = "Level 2"
 
 [node name="Options" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1071324549]
 layout_mode = 2
@@ -57,7 +63,8 @@ theme_override_font_sizes/font_size = 150
 theme_override_styles/normal = ExtResource("2_b6rpx")
 text = "Start Needlessly Complcated Closure of the Game"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/PlayerSelection" to="." method="_on_player_selection_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Level2" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Unplay" to="." method="_on_unplay_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Unplay2" to="." method="_on_unplay_2_pressed"]

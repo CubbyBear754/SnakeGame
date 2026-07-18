@@ -10,4 +10,10 @@ func _ready() -> void:
 	$Snake2.label = p2_label
 	$Snake3.label = p3_label
 	$Snake4.label = p4_label
+	var snakes = [$Snake, $Snake2, $Snake3, $Snake4]
+	for i in range(PlayersData.players.size()):
+		var controls = PlayersData.players[i]
+		var snake = snakes[i]
+		snake.controls = controls
+		
 	
