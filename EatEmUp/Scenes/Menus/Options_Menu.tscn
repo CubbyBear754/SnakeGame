@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://krf0al2ss7o0"]
 
-[ext_resource type="Script" uid="uid://li86yxwqmstb" path="res://EatEmUp/Scenes/options_menu.gd" id="1_7c1di"]
+[ext_resource type="Script" uid="uid://li86yxwqmstb" path="res://EatEmUp/Scenes/Menus/options_menu.gd" id="1_7c1di"]
 
 [node name="Menu" type="Control" unique_id=299913752]
 process_mode = 3

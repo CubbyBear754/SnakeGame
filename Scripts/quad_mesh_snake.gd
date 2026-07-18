@@ -174,7 +174,7 @@ func check_for_hits_on_lost(incoming_global_position: Vector2) -> int:
 	return result
 
 func truncate_lost(cut_indexs: Array[int]) -> void:
-	for index in range(cut_indexs.size()):
+	for index in range(cut_indexs.size(),1,-1):
 		$MultiMeshInstance2D.lost.remove_at(cut_indexs[index])
 
 func truncate_snake(cut_index: int) -> void:

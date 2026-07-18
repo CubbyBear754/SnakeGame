@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://dqcmj76d5nrx5"]
+
+[ext_resource type="Script" uid="uid://b4crj14pr5pj1" path="res://EatEmUp/Scenes/Menus/player_selector.gd" id="1_b2vsn"]
+[ext_resource type="StyleBox" uid="uid://hsjxnvs7v3vv" path="res://Resources/labels.tres" id="1_yli1a"]
+
+[node name="PlayerSelector" type="HSplitContainer" unique_id=1681916658]
+theme_override_constants/separation = 90
+split_offsets = PackedInt32Array(802)
+split_offset = 802
+script = ExtResource("1_b2vsn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=315650948]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=429393835]
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+text = "Device:"
+horizontal_alignment = 2
+autowrap_trim_flags = 128
+
+[node name="Label3" type="Label" parent="VBoxContainer" unique_id=394210880]
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+text = "Player:"
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer" unique_id=1561215094]
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+text = "Leave:"
+horizontal_alignment = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=548761448]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="ControllerID" type="Label" parent="VBoxContainer2" unique_id=446107982]
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+theme_override_styles/normal = ExtResource("1_yli1a")
+text = "KB_1"
+horizontal_alignment = 1
+
+[node name="PlayerID" type="Label" parent="VBoxContainer2" unique_id=894632142]
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+theme_override_styles/normal = ExtResource("1_yli1a")
+text = "1"
+horizontal_alignment = 1
+
+[node name="RemoveAction" type="Label" parent="VBoxContainer2" unique_id=2010230308]
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+theme_override_styles/normal = ExtResource("1_yli1a")
+text = "Q"
+horizontal_alignment = 1

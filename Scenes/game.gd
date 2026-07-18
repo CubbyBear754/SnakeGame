@@ -4,7 +4,7 @@ extends Node
 @onready var viewport_2 = $VSplitContainer/SplitContainer/SVPC2/SVP
 @onready var viewport_3 = $VSplitContainer/SplitContainer2/SVPC3/SVP
 @onready var viewport_4 = $VSplitContainer/SplitContainer2/SVPC4/SVP
-@onready var countdown_label: Label = $Camera2D/TimerCanvas/CountDownLabel
+@onready var countdown_label: Label = $Camera2D/UICanvas/CountDownLabel
 
 func _ready() -> void:
 	var world = viewport_1.find_world_2d()

@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://8dctabm3nmmo"]
+
+[ext_resource type="Script" uid="uid://i7bkv1732qvm" path="res://EatEmUp/Scenes/Menus/player_setup.gd" id="1_0psmr"]
+[ext_resource type="PackedScene" uid="uid://dqcmj76d5nrx5" path="res://EatEmUp/Scenes/Menus/player_selector.tscn" id="2_c6t2a"]
+[ext_resource type="Script" uid="uid://c7t6c5i1cwh3i" path="res://Resources/player_control_res.gd" id="2_ofh0q"]
+
+[sub_resource type="Resource" id="Resource_ofh0q"]
+script = ExtResource("2_ofh0q")
+deviceid = "WASD"
+metadata/_custom_type_script = "uid://c7t6c5i1cwh3i"
+
+[sub_resource type="Resource" id="Resource_c6t2a"]
+script = ExtResource("2_ofh0q")
+deviceid = "Arrow Keys"
+move_left = "kb2_move_left"
+move_right = "kb2_move_right"
+move_up = "kb2_move_up"
+move_down = "kb2_move_down"
+action = "kb2_action"
+leave = "kb2_leave"
+metadata/_custom_type_script = "uid://c7t6c5i1cwh3i"
+
+[sub_resource type="Resource" id="Resource_yhvde"]
+script = ExtResource("2_ofh0q")
+deviceid = "Joy Pad 2"
+move_left = "d1_move_left"
+move_right = "d1_move_right"
+move_up = "d1_move_up"
+move_down = "d1_move_down"
+action = "d1_action"
+leave = "d1_leave"
+metadata/_custom_type_script = "uid://c7t6c5i1cwh3i"
+
+[sub_resource type="Resource" id="Resource_6greb"]
+script = ExtResource("2_ofh0q")
+deviceid = "Joy Pad 1"
+move_left = "d0_move_left"
+move_right = "d0_move_right"
+move_up = "d0_move_up"
+move_down = "d0_move_down"
+action = "d0_action"
+leave = "d0_leave"
+metadata/_custom_type_script = "uid://c7t6c5i1cwh3i"
+
+[node name="PlayerSetup" type="Control" unique_id=434911063]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0psmr")
+player_label = ExtResource("2_c6t2a")
+playeroptions = Array[ExtResource("2_ofh0q")]([SubResource("Resource_ofh0q"), SubResource("Resource_c6t2a"), SubResource("Resource_yhvde"), SubResource("Resource_6greb")])
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=210143567]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 90
+theme_override_constants/margin_top = 90
+theme_override_constants/margin_right = 90
+theme_override_constants/margin_bottom = 90
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1851921113]
+layout_mode = 2
+
+[node name="PlayersContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=10783507]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_constants/separation = 90
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=387233304]
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+text = "PRESS ACTION TO JOIN"
+horizontal_alignment = 1

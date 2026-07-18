@@ -2,11 +2,8 @@
 
 [ext_resource type="Script" uid="uid://c5h2c0k7hvur6" path="res://Scripts/snake.gd" id="1_n0r7v"]
 [ext_resource type="Script" uid="uid://bcpja68he6unc" path="res://Scenes/game1.gd" id="1_vnunq"]
+[ext_resource type="Resource" uid="uid://bs2pvea75cbgu" path="res://Resources/Controllers/p1.tres" id="3_nw7js"]
 [ext_resource type="Script" uid="uid://c7t6c5i1cwh3i" path="res://Resources/player_control_res.gd" id="3_vnunq"]
-
-[sub_resource type="Resource" id="Resource_nw7js"]
-script = ExtResource("3_vnunq")
-metadata/_custom_type_script = "uid://c7t6c5i1cwh3i"
 
 [sub_resource type="Resource" id="Resource_vnunq"]
 script = ExtResource("3_vnunq")
@@ -224,7 +221,7 @@ segmentsize = 80.0
 startlocation = NodePath("StartAt")
 stroke_color = Color(0.65713775, 0.33530915, 0.45253164, 1)
 fill_color = Color(0.6677802, 0.4837951, 0.9214885, 1)
-controls = SubResource("Resource_nw7js")
+controls = ExtResource("3_nw7js")
 
 [node name="StartAt" type="Node2D" parent="Snake" unique_id=181844969]
 position = Vector2(4029, 2155)
