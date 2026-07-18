@@ -1,0 +1,10 @@
+[gd_resource type="MultiMesh" format=3 uid="uid://dbgpg8fixm3ny"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_06xtb"]
+
+[resource]
+use_colors = true
+use_custom_data = true
+instance_count = 4
+mesh = SubResource("QuadMesh_06xtb")
+buffer = PackedFloat32Array(-0.0119415885, 3.0749e-41, 0, 0, 0, 0, 5.2e-44, 0, 0, 0, 0, 0, nan, 0, 0, 0, 1.47e-43, 1.54e-43, 1.63e-43, 1.42e-43, 1.6e-43, 1.43e-43, 1.36e-43, 1.39e-43, 0, 0, 0, 0, 0, 0, 0, 0, 1.47e-43, 1.63e-43, 1.56e-43, 1.6e-43, 6.6e-44, 1.61e-43, 1.46e-43, 1.56e-43, 0, 0, 0, 0, 0, 0, 0, 0, 1.4e-43, 1.36e-43, 1.63e-43, 1.42e-43, 1.33e-43, 1.61e-43, 1.57e-43, 1.47e-43, 0, 0, 0, 0, 0, 0, 0, 0)

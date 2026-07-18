@@ -19,8 +19,8 @@ func _ready() -> void:
 	$QuadMeshSnake4.label = p4_label
 	$QuadMeshSnake4.setcamera(p4_camera)
 	var snakes = [$QuadMeshSnake, $QuadMeshSnake2, $QuadMeshSnake3, $QuadMeshSnake4]
-	for i in range(PlayersData.players.size()):
-		var controls = PlayersData.players[i]
+	for i in range(GlobalData.players.size()):
+		var controls = GlobalData.players[i]
 		var snake = snakes[i]
 		snake.controls = controls
 	

@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://bcpja68he6unc" path="res://Scenes/game1.gd" id="1_rfy83"]
 [ext_resource type="PackedScene" uid="uid://bdjtx57de5ha5" path="res://Scenes/Level_1.tscn" id="2_rfy83"]
-[ext_resource type="Script" uid="uid://bhlw7rjguqwvv" path="res://Scenes/level_1.gd" id="3_bnh5u"]
 [ext_resource type="PackedScene" uid="uid://by0pu31kqwciv" path="res://EatEmUp/Scenes/Menus/pause_menu.tscn" id="4_rfy83"]
 
 [node name="Game" type="Node" unique_id=17946430]
@@ -13,8 +12,6 @@ color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-5000, 9320, 12680, 9320, 12680, -5000, -5000, -5000)
 
 [node name="Level_One" parent="." unique_id=2004211938 node_paths=PackedStringArray("p1_label") instance=ExtResource("2_rfy83")]
-position = Vector2(4, 0)
-script = ExtResource("3_bnh5u")
 p1_label = NodePath("../Camera2D/TimerCanvas/Label")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=253859344]
@@ -37,6 +34,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 500
 text = "Get Ready ..."
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="Camera2D/TimerCanvas" unique_id=2016012168]
 anchors_preset = 10
@@ -47,6 +45,7 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 90
 text = "..."
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Pause_Menu" parent="Camera2D/TimerCanvas" unique_id=666078647 instance=ExtResource("4_rfy83")]
 metadata/_edit_use_anchors_ = true

@@ -1,26 +1,14 @@
 [gd_scene format=3 uid="uid://by4q33pcjni6k"]
 
 [ext_resource type="Script" uid="uid://ba5tqejrxkn5a" path="res://Scripts/quad_mesh_snake.gd" id="1_28q7t"]
-[ext_resource type="Shader" uid="uid://cpca2l5iac5xs" path="res://Scenes/quad_mesh_snake.gdshader" id="2_a3x2j"]
+[ext_resource type="Material" uid="uid://bhaa4ubik2x78" path="res://Resources/snake_shader_material.tres" id="2_m4pld"]
 [ext_resource type="Script" uid="uid://k7x18xor0r0l" path="res://Scenes/multi_mesh_instance_2d.gd" id="2_sj7d7"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_m4pld"]
-shader = ExtResource("2_a3x2j")
-
-[sub_resource type="QuadMesh" id="QuadMesh_a3x2j"]
-center_offset = Vector3(0.5, 0.5, 0.5)
-
-[sub_resource type="MultiMesh" id="MultiMesh_m4pld"]
-use_colors = true
-use_custom_data = true
-instance_count = 4
-mesh = SubResource("QuadMesh_a3x2j")
-buffer = PackedFloat32Array(-0.0119415885, 3.0749e-41, 0, 0, 0, 0, 5.2e-44, 0, 0, 0, 0, 0, nan, 0, 0, 0, 1.47e-43, 1.54e-43, 1.63e-43, 1.42e-43, 1.6e-43, 1.43e-43, 1.36e-43, 1.39e-43, 0, 0, 0, 0, 0, 0, 0, 0, 1.47e-43, 1.63e-43, 1.56e-43, 1.6e-43, 6.6e-44, 1.61e-43, 1.46e-43, 1.56e-43, 0, 0, 0, 0, 0, 0, 0, 0, 1.4e-43, 1.36e-43, 1.63e-43, 1.42e-43, 1.33e-43, 1.61e-43, 1.57e-43, 1.47e-43, 0, 0, 0, 0, 0, 0, 0, 0)
+[ext_resource type="MultiMesh" uid="uid://dbgpg8fixm3ny" path="res://Resources/snake_multi_mesh.tres" id="3_sbspj"]
 
 [node name="QuadMeshSnake" type="Node2D" unique_id=415593519]
 script = ExtResource("1_28q7t")
 
 [node name="MultiMeshInstance2D" type="MultiMeshInstance2D" parent="." unique_id=1125473526]
-material = SubResource("ShaderMaterial_m4pld")
-multimesh = SubResource("MultiMesh_m4pld")
+material = ExtResource("2_m4pld")
+multimesh = ExtResource("3_sbspj")
 script = ExtResource("2_sj7d7")

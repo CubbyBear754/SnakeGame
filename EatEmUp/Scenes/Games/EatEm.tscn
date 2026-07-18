@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://qa7ekt0tehkh"]
+
+[ext_resource type="Script" uid="uid://d0qmhsn8r6kyw" path="res://EatEmUp/Scenes/Games/eat_em.gd" id="1_gw82s"]
+[ext_resource type="PackedScene" uid="uid://dml3xc871p27n" path="res://EatEmUp/Scenes/Games/Levels/QuadSnakeFullScreen.tscn" id="2_osj88"]
+[ext_resource type="PackedScene" uid="uid://by0pu31kqwciv" path="res://EatEmUp/Scenes/Menus/pause_menu.tscn" id="3_p46aq"]
+
+[node name="EatEm" type="Node" unique_id=1083400352]
+script = ExtResource("1_gw82s")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=739229711]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-5000, 9320, 12680, 9320, 12680, -5000, -5000, -5000)
+
+[node name="QuadSnakeFullScreen" parent="." unique_id=1005880294 instance=ExtResource("2_osj88")]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=268536908]
+offset = Vector2(3840, 2160)
+
+[node name="TimerCanvas" type="CanvasLayer" parent="Camera2D" unique_id=1950030206]
+process_mode = 3
+
+[node name="CountDownLabel" type="Label" parent="Camera2D/TimerCanvas" unique_id=2124546884]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -11.5
+offset_right = 48.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 500
+text = "Get Ready ..."
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Camera2D/TimerCanvas" unique_id=286969372]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 98.0
+offset_bottom = 272.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 90
+text = "..."
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Pause_Menu" parent="Camera2D/TimerCanvas" unique_id=666078647 instance=ExtResource("3_p46aq")]
+metadata/_edit_use_anchors_ = true

@@ -15,7 +15,6 @@ var tauthird = (2.0 * PI / 3.0)
 var angles = PI/6
 var halfpi = PI/2 
 var rstwicebypi = 0.0
-var spineless = 0
 var tonguetarget : Vector2
 var max_tongue_length: float = 65.0 # Maximum extension in pixels
 var min_tongue_length: float = 55.0  # Minimum retraction in pixels

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bnyw0aincur5v"]
+
+[ext_resource type="Script" uid="uid://c7la7imbje7dm" path="res://EatEmUp/Scenes/Characters/snake.gd" id="1_glvff"]
+
+[node name="Snake" type="Node2D" unique_id=1897326529]
+script = ExtResource("1_glvff")

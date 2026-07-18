@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bhaa4ubik2x78"]
+
+[ext_resource type="Shader" uid="uid://cpca2l5iac5xs" path="res://Scenes/quad_mesh_snake.gdshader" id="1_ymn8s"]
+
+[resource]
+shader = ExtResource("1_ymn8s")

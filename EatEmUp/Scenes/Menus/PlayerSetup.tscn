@@ -43,6 +43,7 @@ leave = "d0_leave"
 metadata/_custom_type_script = "uid://c7t6c5i1cwh3i"
 
 [node name="PlayerSetup" type="Control" unique_id=434911063]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

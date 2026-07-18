@@ -5,6 +5,10 @@ var selectedcontrols : Array[PlayerControls] = []
 @onready var playercontainer : HBoxContainer = $MarginContainer/VBoxContainer/PlayersContainer
 func _ready() -> void:
 	Engine.max_fps = 30
+	if GlobalData.players.size() > 0:
+		selectedcontrols = GlobalData.players
+		for i in range(selectedcontrols.size()):
+			addplayerlabels(i)
 	
 func _input(event: InputEvent) -> void:
 	for i in range(playeroptions.size()):
@@ -33,8 +37,9 @@ func _input(event: InputEvent) -> void:
 					child.setplayerid(newindex)
 					newindex += 1
 	if Input.is_action_just_pressed("global_action"):
-		PlayersData.players = selectedcontrols
-		get_tree().change_scene_to_file("res://Scenes/Game1.tscn")
+		GlobalData.players = selectedcontrols
+		Engine.max_fps = 0
+		get_tree().change_scene_to_packed(GlobalData.nextscene)
 		
 
 func addplayerlabels(index : int) -> void:

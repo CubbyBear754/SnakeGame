@@ -1,0 +1,136 @@
+[gd_scene format=3 uid="uid://dml3xc871p27n"]
+
+[ext_resource type="Script" uid="uid://kivhm70cqlgd" path="res://EatEmUp/Scenes/Games/Levels/quad_snake_full_screen.gd" id="1_jpb42"]
+[ext_resource type="Script" uid="uid://kjarask4yxr2" path="res://EatEmUp/Scenes/Games/Levels/snakes_mesh.gd" id="2_40x1s"]
+[ext_resource type="PackedScene" uid="uid://bnyw0aincur5v" path="res://EatEmUp/Scenes/Characters/Snake.tscn" id="2_preyu"]
+[ext_resource type="Material" uid="uid://bhaa4ubik2x78" path="res://Resources/snake_shader_material.tres" id="2_qkn6r"]
+[ext_resource type="MultiMesh" uid="uid://dbgpg8fixm3ny" path="res://Resources/snake_multi_mesh.tres" id="3_e1nsi"]
+
+[node name="QuadSnakeFullScreen" type="Node2D" unique_id=1005880294 node_paths=PackedStringArray("total_label", "labels")]
+script = ExtResource("1_jpb42")
+total_label = NodePath("CanvasLayer/MarginContainer/HBoxContainer/Total")
+labels = [NodePath("CanvasLayer/MarginContainer/HBoxContainer/PHP1"), NodePath("CanvasLayer/MarginContainer/HBoxContainer/PHP2"), NodePath("CanvasLayer/MarginContainer/HBoxContainer/PHP3"), NodePath("CanvasLayer/MarginContainer/HBoxContainer/PHP4")]
+
+[node name="SnakesMesh" type="MultiMeshInstance2D" parent="." unique_id=1412261750]
+material = ExtResource("2_qkn6r")
+multimesh = ExtResource("3_e1nsi")
+script = ExtResource("2_40x1s")
+
+[node name="Snakes" type="Node2D" parent="." unique_id=1095871358]
+
+[node name="Snake" parent="Snakes" unique_id=1897326529 node_paths=PackedStringArray("startlocation") instance=ExtResource("2_preyu")]
+speed = 2000.0
+startlocation = NodePath("Marker2D")
+segments = 150
+segmentsize = 75.0
+max_tongue_length = 200.0
+
+[node name="Marker2D" type="Marker2D" parent="Snakes/Snake" unique_id=592303164]
+position = Vector2(500, 500)
+
+[node name="Snake2" parent="Snakes" unique_id=742946013 node_paths=PackedStringArray("startlocation") instance=ExtResource("2_preyu")]
+speed = 2000.0
+fill_color = Color(0, 0.6200355, 0, 1)
+startlocation = NodePath("Marker2D")
+segments = 150
+segmentsize = 75.0
+
+[node name="Marker2D" type="Marker2D" parent="Snakes/Snake2" unique_id=654102258]
+position = Vector2(7180, 500)
+
+[node name="Snake3" parent="Snakes" unique_id=1580293828 node_paths=PackedStringArray("startlocation") instance=ExtResource("2_preyu")]
+speed = 2000.0
+fill_color = Color(0.47401357, 0.000159024, 0.47457373, 1)
+startlocation = NodePath("Marker2D")
+segments = 150
+segmentsize = 75.0
+
+[node name="Marker2D" type="Marker2D" parent="Snakes/Snake3" unique_id=1894113103]
+position = Vector2(500, 3820)
+
+[node name="Snake4" parent="Snakes" unique_id=237972209 node_paths=PackedStringArray("startlocation") instance=ExtResource("2_preyu")]
+speed = 2000.0
+fill_color = Color(0.7074073, 0.09883996, 0.024872817, 1)
+startlocation = NodePath("Marker2D")
+segments = 150
+segmentsize = 75.0
+
+[node name="Marker2D" type="Marker2D" parent="Snakes/Snake4" unique_id=979974637]
+position = Vector2(7180, 3820)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=195197218]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=1051594540]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+theme_override_constants/margin_top = 90
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer" unique_id=1626755487]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 90
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/HBoxContainer" unique_id=1835288161]
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+text = "P1:"
+
+[node name="PHP1" type="Label" parent="CanvasLayer/MarginContainer/HBoxContainer" unique_id=940316903]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+text = "0"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/MarginContainer/HBoxContainer" unique_id=2035684920]
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+text = "P2:"
+
+[node name="PHP2" type="Label" parent="CanvasLayer/MarginContainer/HBoxContainer" unique_id=14676765]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+text = "0"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="CanvasLayer/MarginContainer/HBoxContainer" unique_id=537541843]
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+text = "P3:"
+
+[node name="PHP3" type="Label" parent="CanvasLayer/MarginContainer/HBoxContainer" unique_id=2019436609]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+text = "0"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="CanvasLayer/MarginContainer/HBoxContainer" unique_id=255421009]
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+text = "P4:"
+
+[node name="PHP4" type="Label" parent="CanvasLayer/MarginContainer/HBoxContainer" unique_id=1874031863]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+text = "0"
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="CanvasLayer/MarginContainer/HBoxContainer" unique_id=1372334693]
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+text = "Total:"
+
+[node name="Total" type="Label" parent="CanvasLayer/MarginContainer/HBoxContainer" unique_id=1682188438]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+text = "0"
+horizontal_alignment = 1

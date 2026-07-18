@@ -15,4 +15,3 @@ func start_pregame_countdown() -> void:
 	get_tree().paused = false
 	await get_tree().create_timer(1.0, true, false, true).timeout
 	countdown_label.visible = false	
-	
