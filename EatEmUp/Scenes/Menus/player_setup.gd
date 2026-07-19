@@ -15,16 +15,34 @@ func _input(event: InputEvent) -> void:
 		if Input.is_action_just_pressed(playeroptions[i].action):
 			if selectedcontrols.size() > 0:
 				for x in range(selectedcontrols.size()):
-					if selectedcontrols[x].action == playeroptions[i].action:
+					if playeroptions[i].dtype == PlayerControls.DeviceType.JOYPAD:
+						var joypad_id: int = event.device
+						if selectedcontrols[x].joypadid == joypad_id:
+							#could mark players ready here
+							return
+					elif selectedcontrols[x].action == playeroptions[i].action:
 						#could mark players ready here
 						return;
-			selectedcontrols.append(playeroptions[i])
+			var newselection : PlayerControls = null
+			if playeroptions[i].dtype == PlayerControls.DeviceType.JOYPAD:
+				var joypad_id: int = event.device
+				newselection = playeroptions[i].duplicate()
+				newselection.joypadid = joypad_id
+				newselection.deviceid = "Joypad " + str(joypad_id)
+			else:
+				newselection = playeroptions[i];				
+			selectedcontrols.append(newselection)
 			addplayerlabels(selectedcontrols.size()-1)
 			return
 	var toremove : Array[int] = []
 	for i in range(selectedcontrols.size()):
 		if Input.is_action_just_pressed(selectedcontrols[i].leave):
-			toremove.append(i)
+			if selectedcontrols[i].dtype == PlayerControls.DeviceType.JOYPAD:
+				var joypad_id: int = event.device
+				if selectedcontrols[i].joypadid == joypad_id:
+					toremove.append(i)
+			else:			
+				toremove.append(i)
 	if toremove.size() > 0:
 		for i in range(toremove.size()-1, -1, -1):
 			selectedcontrols.remove_at(toremove[i])
